@@ -1,0 +1,32 @@
+{
+  "name": "node-hid-parse",
+  "version": "0.0.1",
+  "description": "Parse HID report descriptor",
+  "author": {
+    "name": "Marshall Rose",
+    "email": "mrose17@homespun.io"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "jshint package.json *.js",
+    "test": "node test.js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hid",
+    "report descriptor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/homespun/node-hid-parse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/homespun/node-hid-parse/issues"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "dependencies": {
+    "underscore": "1.8.3"
+  }
+}
