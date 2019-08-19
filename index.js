@@ -204,7 +204,7 @@ const parse = (data) => {
 }
 
 
-// hardware people apparently can't figure out how to consistently nest data...
+// apparently, hardware people don't care for nesting/grouping data in a consistent fashion...
 
 const find = (report, page, usage) => {
   let items
