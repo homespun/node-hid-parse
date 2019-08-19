@@ -1,7 +1,9 @@
 /* jshint asi: true, esversion: 6, node: true, laxbreak: true, laxcomma: true, undef: true, unused: true */
 
-const parse = require('.').parse
-    , data = new Buffer.from([
+const hidparse = require('.')
+    , find     = hidparse.find
+    , parse    = hidparse.parse
+    , data     = new Buffer.from([
   0x05, 0x84,
   0x09, 0x04,
   0xA1, 0x01,
@@ -42,5 +44,12 @@ const parse = require('.').parse
       0xB1, 0x23,
     0xC0
 ])
+    , report = parse(data)
 
-console.log(JSON.stringify(parse(data), null, 2))
+console.log(JSON.stringify(find(report, 0xff86, 0x00fc), null, 2))
+/*
+console.log(JSON.stringify(report, null, 2))
+console.log(JSON.stringify(locate(report, 0xff86, 0x00fd), null, 2)
+#define ModbusRTURx 0xFF8600FC
+#define ModbusRTUTx 0xFF8600FD
+*/

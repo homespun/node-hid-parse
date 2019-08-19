@@ -203,4 +203,45 @@ const parse = (data) => {
   return collections[0].entries
 }
 
-module.exports = { parse }
+
+// hardware people apparently can't figure out how to consistently nest data...
+
+const find = (report, page, usage) => {
+  let items
+    , offset = 0
+
+  const usageP = (entry) => { return ((entry.name === 'usage') && (entry.value === usage)) }
+
+  while (offset < report.length) {
+    const entry = report[offset++]
+    let   start, stop
+
+    if ((entry.entries) && (items = find(entry.entries, page, usage))) return items
+
+    if ((entry.name !== 'page') || (entry.value !== page)) continue
+    
+    for (stop = start = offset; offset < report.length; stop = ++offset) {
+      const current = report[offset]
+
+      if ((!current) || (current.name === 'page')) break
+    }
+
+    const groups = []
+
+    while (start < stop) {
+      const current = report[start++]
+
+      if (current.name === 'report_identifier') {
+        groups.push([ current ])
+      } else {
+        underscore.last(groups).push(current)
+      }
+    }
+      
+    return underscore.find(groups, (group) => {
+      for (let entry of group) return usageP(entry)
+    })
+  }
+}
+
+module.exports = { parse, find }
