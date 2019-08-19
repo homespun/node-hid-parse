@@ -239,7 +239,7 @@ const find = (report, page, usage) => {
     }
       
     return underscore.find(groups, (group) => {
-      for (let entry of group) return usageP(entry)
+      for (let entry of group) if (usageP(entry)) return true
     })
   }
 }

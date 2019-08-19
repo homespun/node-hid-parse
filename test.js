@@ -47,9 +47,4 @@ const hidparse = require('.')
     , report = parse(data)
 
 console.log(JSON.stringify(find(report, 0xff86, 0x00fc), null, 2))
-/*
-console.log(JSON.stringify(report, null, 2))
-console.log(JSON.stringify(locate(report, 0xff86, 0x00fd), null, 2)
-#define ModbusRTURx 0xFF8600FC
-#define ModbusRTUTx 0xFF8600FD
-*/
+console.log(JSON.stringify(find(report, 0xff86, 0x00fd), null, 2))
